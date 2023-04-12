@@ -27,7 +27,7 @@ const ScoreboardStyled = styled.header`
 
     h1 {
         width: min-content;
-        line-height: 1;
+        line-height: 0.8;
         text-transform: uppercase;
         font-size: clamp(1.5rem, 0.8vw + 1.3rem, 2rem);
     }
@@ -36,7 +36,7 @@ const ScoreboardStyled = styled.header`
         background-color: #fff;
         display: grid;
         place-items: center;
-        padding: 1.3em min(10%, 2.8rem);
+        padding: 1rem min(10%, 2.6rem);
         line-height: 1;
         border-radius: 6px;
 
@@ -47,7 +47,7 @@ const ScoreboardStyled = styled.header`
         }
         p {
             color: var(--darkText);
-            font-size: clamp(2rem, 3vw + 1.3rem, 4rem);
+            font-size: clamp(2.5rem, 2.3vw + 2rem, 4rem);
         }
     }
 `;
