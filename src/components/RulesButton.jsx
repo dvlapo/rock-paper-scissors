@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const RulesButton = () => {
-    return <RulesButtonStyled>rules</RulesButtonStyled>;
+const RulesButton = ({ setShowRules }) => {
+    return (
+        <RulesButtonStyled onClick={() => setShowRules(true)}>
+            rules
+        </RulesButtonStyled>
+    );
 };
 
 export default RulesButton;

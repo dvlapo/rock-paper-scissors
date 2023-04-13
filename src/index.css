@@ -7,9 +7,34 @@
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 
+    --rock-shadow: hsl(349, 71%, 40%);
+    --paper-shadow: hsl(230, 89%, 55%);
+    --scissors-shadow: hsl(39, 89%, 40%);
+
+    --rock-inset: hsl(349, 70%, 56%);
+    --paper-inset: hsl(230, 89%, 65%);
+    --scissors-inset: hsl(40, 84%, 53%);
+
     --darkText: hsl(229, 25%, 31%);
     --scoreText: hsl(229, 64%, 46%);
     --headerOutline: hsl(217, 16%, 45%);
+
+    --rock-gradient: linear-gradient(
+        180deg,
+        hsl(349, 70%, 56%),
+        hsl(349, 71%, 52%)
+    );
+    --paper-gradient: linear-gradient(
+        180deg,
+        hsl(230, 89%, 65%),
+        hsl(230, 89%, 62%)
+    );
+    --scissors-gradient: linear-gradient(
+        180deg,
+        hsl(40, 84%, 53%),
+        hsl(39, 89%, 49%)
+    );
+
     background: hsl(237, 49%, 15%);
 }
 
@@ -53,6 +78,7 @@ body {
         hsl(237, 49%, 15%)
     );
     color: #fff;
+    padding-top: 7vh;
 }
 /*
   6. Improve media defaults
