@@ -9,20 +9,48 @@ import Battlefield from "./components/Battlefield";
 
 function App() {
     const [showRules, setShowRules] = useState(false);
+    const [showPickFighter, setShowPickFighter] = useState(true);
+    const [showBattlefield, setShowBattlefield] = useState(false);
+    const [score, setScore] = useState(
+        +sessionStorage.getItem("rpsGameScore") || 0
+    );
+    const [playerPicked, setPlayerPicked] = useState("");
+    const [housePicked, setHousePicked] = useState("");
+
+    function handlePlayerPicked(fighter) {
+        setPlayerPicked(fighter);
+        setShowBattlefield(true);
+        setShowPickFighter(false);
+
+        const fighters = ["rock", "paper", "scissors"];
+        const idx = Math.floor(Math.random() * 3);
+        setHousePicked(fighters[idx]);
+    }
 
     return (
         <>
-            <Scoreboard />
+            <Scoreboard score={score} />
             <RulesButton setShowRules={setShowRules} />
             <main>
-                {/* <StepOne>
-                    <img className="triangle" src={bgTriangle} alt="" />
-                    <Rock />
-                    <Paper />
-                    <Scissors />
-                </StepOne> */}
+                {showPickFighter && (
+                    <PickFighter>
+                        <img className="triangle" src={bgTriangle} alt="" />
+                        <Rock handlePlayerPicked={handlePlayerPicked} />
+                        <Paper handlePlayerPicked={handlePlayerPicked} />
+                        <Scissors handlePlayerPicked={handlePlayerPicked} />
+                    </PickFighter>
+                )}
 
-                <Battlefield />
+                {showBattlefield && (
+                    <Battlefield
+                        playerPicked={playerPicked}
+                        housePicked={housePicked}
+                        score={score}
+                        setScore={setScore}
+                        setShowBattlefield={setShowBattlefield}
+                        setShowPickFighter={setShowPickFighter}
+                    />
+                )}
             </main>
             <Rules showRules={showRules} setShowRules={setShowRules} />
         </>
@@ -31,7 +59,7 @@ function App() {
 
 export default App;
 
-const StepOne = styled.div`
+const PickFighter = styled.div`
     width: min(90vw, 500px);
     gap: min(3rem, 8vw);
     margin-inline: auto;

@@ -29,7 +29,7 @@ const RulesButtonStyled = styled.button`
         right: unset;
     }
 
-    @media screen and (orientation: landscape) {
+    @media screen and (max-width: 768px) and (orientation: landscape) {
         display: none;
     }
 `;

@@ -36,6 +36,7 @@
     );
 
     background: hsl(237, 49%, 15%);
+    overflow-x: hidden;
 }
 
 /* RESET */
@@ -80,11 +81,12 @@ body {
     color: #fff;
     padding-top: 7vh;
 }
-@media (max-width: 650px) and (orientation: landscape) {
+@media (max-width: 768px) and (orientation: landscape) {
     body {
         height: 140vh;
     }
 }
+
 /*
   6. Improve media defaults
 */

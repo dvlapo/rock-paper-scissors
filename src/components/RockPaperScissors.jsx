@@ -4,13 +4,14 @@ import rock from "../assets/images/icon-rock.svg";
 import paper from "../assets/images/icon-paper.svg";
 import scissors from "../assets/images/icon-scissors.svg";
 
-export const Rock = ({ size }) => {
+export const Rock = ({ size, handlePlayerPicked }) => {
     return (
         <ChoiceStyled
             shadow="var(--rock-shadow)"
             background="var(--rock-gradient)"
             inset="var(--rock-inset)"
             size={size}
+            onClick={() => handlePlayerPicked("rock")}
         >
             <div className="icon">
                 <img src={rock} alt="Rock" />
@@ -18,13 +19,14 @@ export const Rock = ({ size }) => {
         </ChoiceStyled>
     );
 };
-export const Paper = ({ size }) => {
+export const Paper = ({ size, handlePlayerPicked }) => {
     return (
         <ChoiceStyled
             shadow="var(--paper-shadow)"
             background="var(--paper-gradient)"
             inset="var(--paper-inset)"
             size={size}
+            onClick={() => handlePlayerPicked("paper")}
         >
             <div className="icon">
                 <img src={paper} alt="Paper" />
@@ -32,13 +34,14 @@ export const Paper = ({ size }) => {
         </ChoiceStyled>
     );
 };
-export const Scissors = ({ size }) => {
+export const Scissors = ({ size, handlePlayerPicked }) => {
     return (
         <ChoiceStyled
             shadow="var(--scissors-shadow)"
             background="var(--scissors-gradient)"
             inset="var(--scissors-inset)"
             size={size}
+            onClick={() => handlePlayerPicked("scissors")}
         >
             <div className="icon">
                 <img src={scissors} alt="Scissors" />

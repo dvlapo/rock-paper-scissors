@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Scoreboard = () => {
+const Scoreboard = ({ score }) => {
     return (
         <ScoreboardStyled>
             <h1>Rock Paper Scissors</h1>
             <div className="score">
                 <small>score</small>
-                <p>0</p>
+                <p>{score}</p>
             </div>
         </ScoreboardStyled>
     );
