@@ -12,6 +12,10 @@ export const Rock = ({ size, handlePlayerPicked }) => {
             inset="var(--rock-inset)"
             size={size}
             onClick={() => handlePlayerPicked("rock")}
+            onKeyDown={(event) => {
+                if (event.key === "Enter") handlePlayerPicked("rock");
+            }}
+            tabIndex="1"
         >
             <div className="icon">
                 <img src={rock} alt="Rock" />
@@ -27,6 +31,10 @@ export const Paper = ({ size, handlePlayerPicked }) => {
             inset="var(--paper-inset)"
             size={size}
             onClick={() => handlePlayerPicked("paper")}
+            onKeyDown={(event) => {
+                if (event.key === "Enter") handlePlayerPicked("paper");
+            }}
+            tabIndex="1"
         >
             <div className="icon">
                 <img src={paper} alt="Paper" />
@@ -42,6 +50,10 @@ export const Scissors = ({ size, handlePlayerPicked }) => {
             inset="var(--scissors-inset)"
             size={size}
             onClick={() => handlePlayerPicked("scissors")}
+            onKeyDown={(event) => {
+                if (event.key === "Enter") handlePlayerPicked("scissors");
+            }}
+            tabIndex="1"
         >
             <div className="icon">
                 <img src={scissors} alt="Scissors" />

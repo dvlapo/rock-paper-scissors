@@ -79,7 +79,9 @@ const Battlefield = ({
             {showVerdict && (
                 <div className="verdict">
                     <p>{verdict}</p>
-                    <button onClick={playAgain}>play again</button>
+                    <button onClick={playAgain} tabIndex="1">
+                        play again
+                    </button>
                 </div>
             )}
 

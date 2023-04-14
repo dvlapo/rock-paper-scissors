@@ -16,13 +16,13 @@ function App() {
     );
     const [playerPicked, setPlayerPicked] = useState("");
     const [housePicked, setHousePicked] = useState("");
+    const fighters = ["rock", "paper", "scissors"];
 
     function handlePlayerPicked(fighter) {
         setPlayerPicked(fighter);
         setShowBattlefield(true);
         setShowPickFighter(false);
 
-        const fighters = ["rock", "paper", "scissors"];
         const idx = Math.floor(Math.random() * 3);
         setHousePicked(fighters[idx]);
     }
