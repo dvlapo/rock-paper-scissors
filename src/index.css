@@ -80,6 +80,11 @@ body {
     color: #fff;
     padding-top: 7vh;
 }
+@media (max-width: 650px) and (orientation: landscape) {
+    body {
+        height: 140vh;
+    }
+}
 /*
   6. Improve media defaults
 */

@@ -28,4 +28,8 @@ const RulesButtonStyled = styled.button`
         transform: translateX(-50%);
         right: unset;
     }
+
+    @media screen and (orientation: landscape) {
+        display: none;
+    }
 `;

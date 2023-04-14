@@ -1,15 +1,16 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import rock from "../assets/images/icon-rock.svg";
 import paper from "../assets/images/icon-paper.svg";
 import scissors from "../assets/images/icon-scissors.svg";
 
-export const Rock = () => {
+export const Rock = ({ size }) => {
     return (
         <ChoiceStyled
             shadow="var(--rock-shadow)"
             background="var(--rock-gradient)"
             inset="var(--rock-inset)"
+            size={size}
         >
             <div className="icon">
                 <img src={rock} alt="Rock" />
@@ -17,12 +18,13 @@ export const Rock = () => {
         </ChoiceStyled>
     );
 };
-export const Paper = () => {
+export const Paper = ({ size }) => {
     return (
         <ChoiceStyled
             shadow="var(--paper-shadow)"
             background="var(--paper-gradient)"
             inset="var(--paper-inset)"
+            size={size}
         >
             <div className="icon">
                 <img src={paper} alt="Paper" />
@@ -30,12 +32,13 @@ export const Paper = () => {
         </ChoiceStyled>
     );
 };
-export const Scissors = () => {
+export const Scissors = ({ size }) => {
     return (
         <ChoiceStyled
             shadow="var(--scissors-shadow)"
             background="var(--scissors-gradient)"
             inset="var(--scissors-inset)"
+            size={size}
         >
             <div className="icon">
                 <img src={scissors} alt="Scissors" />
@@ -46,14 +49,22 @@ export const Scissors = () => {
 
 const ChoiceStyled = styled.div`
     background: ${(props) => props.background};
-    width: min(150px, 30vw);
+    width: ${(props) =>
+        props.size === "big" ? "min(200px, 30vw)" : "min(150px, 30vw)"};
     aspect-ratio: 1;
     position: relative;
     border-radius: 100%;
     display: inline-block;
     box-shadow: ${(props) => props.shadow} 0px -8px 0px 0px inset,
         ${(props) => props.inset} -3px -3px 6px 1px inset;
-    cursor: pointer;
+    cursor: ${(props) => (props.size === "big" ? "default" : "pointer")};
+    transition: 150ms;
+
+    &:hover {
+        transform: ${(props) =>
+            props.size === "big" ? "none" : "translateY(5px) scale(1.01)"};
+        opacity: ${(props) => (props.size === "big" ? "1" : "0.7")};
+    }
 
     .icon {
         background: white;

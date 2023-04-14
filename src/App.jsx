@@ -5,6 +5,7 @@ import styled from "styled-components";
 import bgTriangle from "./assets/images/bg-triangle.svg";
 import Rules from "./components/Rules";
 import { useState } from "react";
+import Battlefield from "./components/Battlefield";
 
 function App() {
     const [showRules, setShowRules] = useState(false);
@@ -14,12 +15,14 @@ function App() {
             <Scoreboard />
             <RulesButton setShowRules={setShowRules} />
             <main>
-                <StepOne>
+                {/* <StepOne>
                     <img className="triangle" src={bgTriangle} alt="" />
                     <Rock />
                     <Paper />
                     <Scissors />
-                </StepOne>
+                </StepOne> */}
+
+                <Battlefield />
             </main>
             <Rules showRules={showRules} setShowRules={setShowRules} />
         </>
