@@ -27,6 +27,7 @@ const RulesButtonStyled = styled.button`
         left: 50%;
         transform: translateX(-50%);
         right: unset;
+        bottom: 6dvh;
     }
 
     @media screen and (max-width: 768px) and (orientation: landscape) {
