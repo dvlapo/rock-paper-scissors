@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Rock, Paper, Scissors } from "./RockPaperScissors";
 import styled from "styled-components";
+import useSound from "../hooks/useSound";
 
 const Battlefield = ({
     playerPicked,
@@ -13,6 +14,9 @@ const Battlefield = ({
     const [showVerdict, setShowVerdict] = useState(false);
     const [verdict, setVerdict] = useState("");
     const [showHouseChoice, setShowHouseChoice] = useState(false);
+    const [playerWinsRound, setPlayerWinsRound] = useState(false);
+    const [houseWinsRound, setHouseWinsRound] = useState(false);
+    const { playLose, playWin } = useSound();
 
     function decideRoundWinner() {
         let nextScore;
@@ -22,26 +26,44 @@ const Battlefield = ({
             setVerdict("you lose");
             nextScore = score - 1;
             setScore(nextScore);
+            playLose();
+            setPlayerWinsRound(false);
+            setHouseWinsRound(true);
         } else if (playerPicked === "rock" && housePicked === "scissors") {
             setVerdict("you win");
             nextScore = score + 1;
             setScore(nextScore);
+            playWin();
+            setPlayerWinsRound(true);
+            setHouseWinsRound(false);
         } else if (playerPicked === "paper" && housePicked === "scissors") {
             setVerdict("you lose");
             nextScore = score - 1;
             setScore(nextScore);
+            playLose();
+            setPlayerWinsRound(false);
+            setHouseWinsRound(true);
         } else if (playerPicked === "paper" && housePicked === "rock") {
             setVerdict("you win");
             nextScore = score + 1;
             setScore(nextScore);
+            playWin();
+            setPlayerWinsRound(true);
+            setHouseWinsRound(false);
         } else if (playerPicked === "scissors" && housePicked === "rock") {
             setVerdict("you lose");
             nextScore = score - 1;
             setScore(nextScore);
+            playLose();
+            setPlayerWinsRound(false);
+            setHouseWinsRound(true);
         } else if (playerPicked === "scissors" && housePicked === "paper") {
             setVerdict("you win");
             nextScore = score + 1;
             setScore(nextScore);
+            playWin();
+            setPlayerWinsRound(true);
+            setHouseWinsRound(false);
         }
 
         sessionStorage.setItem("rpsGameScore", nextScore);
@@ -61,16 +83,16 @@ const Battlefield = ({
     }, []);
 
     return (
-        // shrink when verdict is not been displayed
+        // shrink(reduce width) when verdict is not being displayed
         <BattlefieldStyled shrink={!showVerdict}>
             <div className="picked you-picked">
                 <h4>you picked</h4>
                 {playerPicked === "rock" ? (
-                    <Rock size={"big"} />
+                    <Rock size={"big"} playerWinsRound={playerWinsRound} />
                 ) : playerPicked === "paper" ? (
-                    <Paper size={"big"} />
+                    <Paper size={"big"} playerWinsRound={playerWinsRound} />
                 ) : playerPicked === "scissors" ? (
-                    <Scissors size={"big"} />
+                    <Scissors size={"big"} playerWinsRound={playerWinsRound} />
                 ) : (
                     ""
                 )}
@@ -99,11 +121,20 @@ const Battlefield = ({
                         }`}
                     >
                         {housePicked === "rock" ? (
-                            <Rock size={"big"} />
+                            <Rock
+                                size={"big"}
+                                houseWinsRound={houseWinsRound}
+                            />
                         ) : housePicked === "paper" ? (
-                            <Paper size={"big"} />
+                            <Paper
+                                size={"big"}
+                                houseWinsRound={houseWinsRound}
+                            />
                         ) : housePicked === "scissors" ? (
-                            <Scissors size={"big"} />
+                            <Scissors
+                                size={"big"}
+                                houseWinsRound={houseWinsRound}
+                            />
                         ) : (
                             ""
                         )}
@@ -122,7 +153,7 @@ const BattlefieldStyled = styled.div`
     align-items: ${(props) => (props.shrink ? "stretch" : "center")};
     width: min(90vw, 700px);
     width: ${(props) =>
-        props.shrink ? "min(90vw, 500px)" : "min(90vw, 700px)"};
+        props.shrink ? "min(90vw, 600px)" : "min(90vw, 750px)"};
     margin-inline: auto;
     margin-top: 3rem;
     text-transform: uppercase;
@@ -167,6 +198,8 @@ const BattlefieldStyled = styled.div`
     }
 
     .verdict {
+        position: relative;
+        z-index: 100;
         p {
             font-size: 3rem;
         }
@@ -179,16 +212,11 @@ const BattlefieldStyled = styled.div`
             padding: 0.8em 4em;
             transform: 150ms;
             font-weight: 700;
+            color: var(--darkText);
             cursor: pointer;
-            &.win {
-                color: var(--darkText);
-            }
-            &.lose {
-                color: crimson;
-            }
 
             &:hover {
-                opacity: 0.7;
+                color: crimson;
             }
         }
     }
@@ -198,6 +226,8 @@ const BattlefieldStyled = styled.div`
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+        z-index: -1;
+        position: relative;
 
         h4 {
             font-size: 1rem;
