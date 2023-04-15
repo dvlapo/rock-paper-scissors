@@ -80,6 +80,7 @@ body {
     );
     color: #fff;
     padding-top: 7vh;
+    overflow-x: hidden;
 }
 @media (max-width: 768px) and (orientation: landscape) {
     body {

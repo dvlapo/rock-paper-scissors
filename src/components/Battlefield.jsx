@@ -87,15 +87,30 @@ const Battlefield = ({
         <BattlefieldStyled shrink={!showVerdict}>
             <div className="picked you-picked">
                 <h4>you picked</h4>
-                {playerPicked === "rock" ? (
-                    <Rock size={"big"} playerWinsRound={playerWinsRound} />
-                ) : playerPicked === "paper" ? (
-                    <Paper size={"big"} playerWinsRound={playerWinsRound} />
-                ) : playerPicked === "scissors" ? (
-                    <Scissors size={"big"} playerWinsRound={playerWinsRound} />
-                ) : (
-                    ""
-                )}
+                <div>
+                    <div style={{ position: "relative" }}>
+                        {playerWinsRound && <Gradients />}
+
+                        {playerPicked === "rock" ? (
+                            <Rock
+                                size={"big"}
+                                playerWinsRound={playerWinsRound}
+                            />
+                        ) : playerPicked === "paper" ? (
+                            <Paper
+                                size={"big"}
+                                playerWinsRound={playerWinsRound}
+                            />
+                        ) : playerPicked === "scissors" ? (
+                            <Scissors
+                                size={"big"}
+                                playerWinsRound={playerWinsRound}
+                            />
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                </div>
             </div>
 
             {showVerdict && (
@@ -115,6 +130,7 @@ const Battlefield = ({
                         className={`bg ${showHouseChoice ? "hide" : ""}`}
                     ></div>
 
+                    {houseWinsRound && <Gradients />}
                     <div
                         className={`house-choice ${
                             showHouseChoice ? "show" : ""
@@ -146,6 +162,18 @@ const Battlefield = ({
 };
 
 export default Battlefield;
+
+const Gradients = () => {
+    return (
+        <GradientsStyled>
+            <div>
+                <div>
+                    <div></div>
+                </div>
+            </div>
+        </GradientsStyled>
+    );
+};
 
 const BattlefieldStyled = styled.div`
     display: flex;
@@ -181,7 +209,7 @@ const BattlefieldStyled = styled.div`
         translate: -50% -50%;
 
         &.hide {
-            display: none;
+            visibility: hidden;
         }
     }
 
@@ -226,8 +254,6 @@ const BattlefieldStyled = styled.div`
         flex-direction: column;
         align-items: center;
         gap: 1rem;
-        z-index: -1;
-        position: relative;
 
         h4 {
             font-size: 1rem;
@@ -238,7 +264,8 @@ const BattlefieldStyled = styled.div`
     @media screen and (max-width: 650px) {
         justify-content: center;
         margin-top: min(7rem, 10vh);
-        gap: min(4rem, 10vw);
+        gap: min(4rem, 25vw);
+        align-items: flex-end;
 
         .verdict {
             order: 3;
@@ -253,6 +280,55 @@ const BattlefieldStyled = styled.div`
 
         .picked {
             flex-direction: column-reverse;
+        }
+    }
+    @media screen and (max-width: 380px) {
+        gap: 5vw;
+    }
+`;
+
+const GradientsStyled = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: -2;
+    opacity: 0.6;
+
+    & > div {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: hsl(214, 47%, 23%);
+
+        & > div {
+            background-color: hsl(214, 47%, 25%);
+            width: 80%;
+            height: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+
+            & > div {
+                background-color: hsl(214, 47%, 27%);
+                width: 75%;
+                height: 75%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+            }
         }
     }
 `;
