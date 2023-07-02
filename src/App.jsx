@@ -4,19 +4,26 @@ import { Rock, Paper, Scissors } from "./components/RockPaperScissors";
 import styled from "styled-components";
 import bgTriangle from "./assets/images/bg-triangle.svg";
 import Rules from "./components/Rules";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Battlefield from "./components/Battlefield";
+import store from "./db/store";
 
 function App() {
     const [showRules, setShowRules] = useState(false);
     const [showPickFighter, setShowPickFighter] = useState(true);
     const [showBattlefield, setShowBattlefield] = useState(false);
-    const [score, setScore] = useState(
-        +sessionStorage.getItem("rpsGameScore") || 0
-    );
+    const [score, setScore] = useState(0);
     const [playerPicked, setPlayerPicked] = useState("");
     const [housePicked, setHousePicked] = useState("");
     const fighters = ["rock", "paper", "scissors"];
+
+    async function getScore() {
+        setScore(await store.getScore());
+    }
+
+    useEffect(() => {
+        getScore();
+    }, []);
 
     function handlePlayerPicked(fighter) {
         setPlayerPicked(fighter);

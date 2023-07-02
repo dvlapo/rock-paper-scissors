@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Rock, Paper, Scissors } from "./RockPaperScissors";
 import styled from "styled-components";
 import useSound from "../hooks/useSound";
+import store from "../db/store";
 
 const Battlefield = ({
     playerPicked,
@@ -65,9 +66,9 @@ const Battlefield = ({
             setPlayerWinsRound(true);
             setHouseWinsRound(false);
         }
-
-        sessionStorage.setItem("rpsGameScore", nextScore);
         setShowVerdict(true);
+
+        store.updateDB(+nextScore);
     }
 
     function playAgain() {
