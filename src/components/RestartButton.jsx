@@ -28,7 +28,7 @@ const RestartButtonStyled = styled.button`
     padding: 0.5em 2.5em;
     border-radius: 8px;
     position: absolute;
-    bottom: 12vh;
+    bottom: 15vh;
     right: 4vw;
     @media screen and (max-width: 768px) {
         left: 50%;
