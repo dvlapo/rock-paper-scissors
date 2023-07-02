@@ -7,6 +7,7 @@ import Rules from "./components/Rules";
 import { useEffect, useState } from "react";
 import Battlefield from "./components/Battlefield";
 import store from "./db/store";
+import RestartButton from "./components/RestartButton";
 
 function App() {
     const [showRules, setShowRules] = useState(false);
@@ -37,6 +38,13 @@ function App() {
     return (
         <>
             <Scoreboard score={score} />
+            {score !== 0 && (
+                <RestartButton
+                    setShowPickFighter={setShowPickFighter}
+                    setShowBattlefield={setShowBattlefield}
+                    setScore={setScore}
+                />
+            )}
             <RulesButton setShowRules={setShowRules} />
             <main>
                 {showPickFighter && (
@@ -59,6 +67,7 @@ function App() {
                     />
                 )}
             </main>
+
             <Rules showRules={showRules} setShowRules={setShowRules} />
         </>
     );

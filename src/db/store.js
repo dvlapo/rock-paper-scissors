@@ -1,4 +1,4 @@
-import { openDB, deleteDB } from "idb";
+import { openDB } from "idb";
 
 const store = {
     openDB: async () => {
